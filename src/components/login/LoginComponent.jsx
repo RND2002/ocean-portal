@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../authservice/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LoginComponent = () => {
   const [username, setusername] = useState("");
@@ -28,6 +29,9 @@ const LoginComponent = () => {
     }
   }
 
+  function goToSignupPage(){
+    navigate(`users/registration`)
+  }
   return (
     <>
      {showErrorMessage && <div className="errorMessage">Authentication Failed. 
@@ -109,14 +113,9 @@ const LoginComponent = () => {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Forgot Password?{" "}
-            <a
-              href="#"
-              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-            >
-              Reset Password
-            </a>
+            New User
           </p>
+          <button onClick={goToSignupPage} type="button" className="bg-blue">Sign-up here</button>
         </div>
       </div>
     </>

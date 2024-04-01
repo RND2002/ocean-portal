@@ -3,10 +3,12 @@ import { useEffect, useState } from "react"
 import { retrieveAllCourses } from "../../apis/courseApi"
 import { useAuth } from "../../authservice/AuthProvider"
 import { useParams } from "react-router-dom";
+import LinearColor from "../Loader";
 
 export default function UserDashboard() {
     const [courses, setCourses] = useState([]);
     const authContext = useAuth();
+    const [isLoading,setLoading]=useState(true)
 
     
 
@@ -14,6 +16,7 @@ export default function UserDashboard() {
         try {
             const response = await retrieveAllCourses(authContext.token);
             setCourses(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(error);
         }
@@ -25,6 +28,7 @@ export default function UserDashboard() {
 
     return (
         <div className="bg-white">
+            {isLoading && <LinearColor/>}
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                 <h2 className="text-2xl font-bold tracking-tight text-gray-900">Browse Courses of your interest</h2>
 

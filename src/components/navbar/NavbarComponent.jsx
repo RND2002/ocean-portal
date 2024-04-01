@@ -90,7 +90,7 @@ import { useNavigate } from 'react-router-dom'
 
 const navigation = [
   { name: 'Categories', href: '#', current: true },
-  { name: 'Udemy-Business', href: '#', current: false },
+  { name: 'Sign-up', href: '/users/registration', current: false },
   { name: 'Teach on Udemy', href: '/course/create', current: false },
   { name: 'Your Courses', href: '/courses/author/all', current: false },
 ]

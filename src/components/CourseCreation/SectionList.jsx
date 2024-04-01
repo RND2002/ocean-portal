@@ -252,11 +252,13 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import LinearColor from '../Loader';
 
 const SectionList = () => {
   const [sections, setSections] = useState([])
   const [selectedSectionId, setSelectedSectionId] = useState(null); // State variable to track the selected section ID
   const [lectures, setLectures] = useState([]); // State variable to store lectures
+  const [isLoading,setLoading]=useState(true)
   const authContext = useAuth()
   const courseId = useParams().id
 
@@ -279,54 +281,14 @@ const SectionList = () => {
     const response = await getLecturesApi(authContext.token, sectionId); // Fetch lectures for the selected section ID
     if (response.status === 200) {
       setLectures(response.data);
+      setLoading(false)
     } else {
       console.log("error")
     }
   }
 
   return (
-    // <div class="max-w-screen-lg mx-auto mt-4">
-    //   <ul role="list" class="divide-y divide-gray-100">
-    //     {sections.map((section) => (
-    //       <li class="py-5" key={section.id}>
-    //         <div class="flex items-center gap-4">
-    //           <div class="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full">
-    //             <span class="font-bold text-lg text-gray-700">{section.sectionOrder}</span>
-    //           </div>
-    //           <div>
-    //             <p class="text-sm font-semibold leading-6 text-gray-900">{section.name}</p>
-    //             <p class="mt-1 truncate text-xs leading-5 text-gray-500">{section.sectionOrder}</p>
-    //           </div>
-    //         </div>
-    //         <div class="hidden sm:flex sm:flex-col sm:items-end -mt-14">
-    //           <button
-    //             type="button"
-    //             onClick={() => toggleLectures(section.sectionId)} // Pass the section ID to toggleLectures function
-    //             className="inline-flex justify-center px-4 py-2 mt-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-    //           >
-    //             View Lecture
-    //           </button>
-    //         </div>
-           
-    //           <div class="hidden sm:flex sm:flex-col sm:items-end -mt-14">
-    //             {/* Render lectures here */}
-    //             <ul>
-    //               {lectures.map((lecture) => (
-    //                 <li key={lecture.id}>
-    //                   <p>{lecture.name}</p>
-    //                   <p>Resource Name: {lecture.resource.name}</p>
-    //                   <p>Resource Size: {lecture.resource.size}</p>
-    //                   <a href={lecture.resource.url} target="_blank" rel="noopener noreferrer">View Resource</a>
-    //                 </li>
-    //               ))}
-    //             </ul>
-    //             <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-    //           </div>
-            
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </div>
+    
     <div>
       {sections.map((section) => (
         <React.Fragment key={section.sectionId}>
@@ -340,22 +302,9 @@ const SectionList = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Section description will be displayed here in near future
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ArrowDropDownIcon />}
-              aria-controls="panel2-content"
-              id="panel2-header"
-            >
-              <Typography>Toggle Lectures 😊</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                {/* Render lecture data here */}
-                <ul>
+                {/* Section description will be displayed here in near future */}
+                  <ul>
+                {isLoading && <LinearColor/>}
                   {lectures.map((lecture) => (
                     <li key={lecture.id}>
                       <p>{lecture.name}</p>
@@ -368,6 +317,7 @@ const SectionList = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
+         
         </React.Fragment>
       ))}
     </div>

@@ -8,3 +8,7 @@ export const executeBasicAuthenticationService
         }
     }
     )
+
+    export const sendUserRegistrationData = (userData) => {
+        return apiClient.post(`users/register`, userData);
+      };

@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { retrieveAllCoursesForAuthor } from '../../apis/courseApi'
 import { useAuth } from '../../authservice/AuthProvider'
 import { Link, useParams } from 'react-router-dom'
+import LinearColor from '../Loader'
 
 export const CourseOfAuthor = () => {
     const [coursesForAuthor,setCoursesForAuthor]=useState([])
+    const [isLoading,setLoading]=useState(true)
     const authContext=useAuth()
     async function getAllCoursesForAuthor(){
        const response=await retrieveAllCoursesForAuthor(authContext.token,"john@example.com");
        if(response.status===200){
         setCoursesForAuthor(response.data);
+        setLoading(false)
         console.log("done")
        }else{
         console.log("error fetching data");
@@ -22,6 +25,7 @@ export const CourseOfAuthor = () => {
   return (
     <>
          <div className="bg-white">
+         {isLoading && <LinearColor/>}
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                 <h2 className="text-2xl font-bold tracking-tight text-gray-900">Browse Courses of your interest</h2>
 
@@ -37,6 +41,7 @@ export const CourseOfAuthor = () => {
                                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                                 />
                             </div>
+                            
                             <div className="mt-4 flex justify-between">
                                 <div>
                                     <h3 className="text-sm text-gray-700">

@@ -9,6 +9,7 @@ import SectionCrud from '../components/CourseCreation/SectionCrud'
 import { CourseOfAuthor } from '../components/CourseCreation/CourseOfAuthor'
 import SectionsComponent from '../components/CourseCreation/SectionsComponent'
 import SectionList from '../components/CourseCreation/SectionList'
+import Signup from '../components/Signup'
 
 const Router = () => {
     function AuthenticatedRoute({children}) {
@@ -25,9 +26,10 @@ const Router = () => {
             <BrowserRouter>
             <NavbarComponent/>
             <Routes>
+         <Route path='users/registration' Component={Signup}/>
                 
                 <Route path='/' Component={LoginComponent}/>
-                
+               
                 <Route path='/welcome' element={
                             <AuthenticatedRoute>
                                 <UserDashboard />
