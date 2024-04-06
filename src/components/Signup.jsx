@@ -11,7 +11,13 @@ const Signup = () => {
     lastName: "",
     email: "",
     password: "",
+    role:[{
+      id: 0,
+      name: "ROLE_USER"
+    }]
   });
+
+  //const [role,setRole]=useState({})
 
   const [message, setMessage] = useState("");
 
@@ -22,6 +28,10 @@ const Signup = () => {
         [name]: value
     }));
 };
+
+// const handleRoleChange=()=>{
+//   setRole("ROLE_USER")
+// }
   
 
  async function handleUserForm(e) {
@@ -31,6 +41,7 @@ const Signup = () => {
     const response = await sendUserRegistrationData(userForm);
     if (response.status === 200) {
       setMessage("Form submission successful");
+    goToLoginPage();
     } else {
       setMessage("Issues on the server: " + response.status);
     }
@@ -107,6 +118,21 @@ const Signup = () => {
           <div>
             <br />
           </div>
+          <div>
+            <br />
+          </div>
+          <input
+            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+            id="role"
+            name="role"
+            type="role"
+            placeholder="Enter password"
+            value={userForm.role}
+            onChange={handleInputChange}
+          />
+          <div>
+            <br />
+          </div>
           {/* <div>
             <span className="flex justify-between">
               Author
@@ -128,7 +154,7 @@ const Signup = () => {
             </span>
           </div> */}
           <div className="flex justify-center align items-center mt-5">
-            <button onClick={goToLoginPage}
+            <button 
               className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
               type="submit"
             >

@@ -40,7 +40,7 @@ const Router = () => {
                                 <CourseCrudForm />
                             </AuthenticatedRoute> 
                         } />
-                    <Route path='/course/resources' element={
+                    <Route path='/course/resources/:sectionId' element={
                         <AuthenticatedRoute>
                             <SectionCrud/>
                         </AuthenticatedRoute>

@@ -245,7 +245,7 @@
 import React, { useEffect, useState } from 'react'
 import { getAllSectionsApi, getLecturesApi } from '../../apis/courseApi'
 import { useAuth } from '../../authservice/AuthProvider'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -253,6 +253,7 @@ import Typography from '@mui/material/Typography';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import LinearColor from '../Loader';
+import { Button } from '@mui/material';
 
 const SectionList = () => {
   const [sections, setSections] = useState([])
@@ -280,12 +281,15 @@ const SectionList = () => {
     
     const response = await getLecturesApi(authContext.token, sectionId); // Fetch lectures for the selected section ID
     if (response.status === 200) {
+      console.log(response.data)
       setLectures(response.data);
       setLoading(false)
     } else {
       console.log("error")
     }
   }
+
+  //const sectionId=useParams()
 
   return (
     
@@ -299,6 +303,7 @@ const SectionList = () => {
               id="panel1-header"
             >
               <Typography><div className='flex-auto'><h5>Section name</h5>{section.name}</div></Typography>
+              <Button component={Link} to={`/course/resources/${section.sectionId}`} variant="contained" color="primary">Add Lecture</Button>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
@@ -307,6 +312,7 @@ const SectionList = () => {
                 {isLoading && <LinearColor/>}
                   {lectures.map((lecture) => (
                     <li key={lecture.id}>
+                       
                       <p>{lecture.name}</p>
                       <p>Resource Name: {lecture.resource.name}</p>
                       <p>Resource Size: {lecture.resource.size}</p>

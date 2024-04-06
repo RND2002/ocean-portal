@@ -28,7 +28,7 @@ const SectionsComponent = () => {
     
     const navigate=useNavigate()
     const courseId=useParams().id
-    console.log(courseId)
+    console.log("courseId is"+courseId)
     const authContext=useAuth()
     async function createSectionCaller(e){
       e.preventDefault()

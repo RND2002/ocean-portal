@@ -60,21 +60,25 @@
 
 // export default SectionCrud
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../authservice/AuthProvider';
 import { createLectureApi } from '../../apis/courseApi';
 
+
 const SectionCrud = () => {
     const navigate=useNavigate()
+    const {id}=useParams()
     const [lectureData, setLectureData] = useState({
         name: '',
-        sectionId: 2,
+        sectionId: id,
         resource: {
             name: '',
             size: 0,
             url: ''
         }
     });
+
+    
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -113,6 +117,8 @@ const SectionCrud = () => {
             console.error('Error:', error);
         }
     };
+
+    
 
     return (
         <form onSubmit={handleSubmit}>
@@ -170,6 +176,20 @@ const SectionCrud = () => {
                     id="resourceUrl"
                     name="url"
                     value={lectureData.resource.url}
+                    onChange={handleResourceChange}
+                    className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    placeholder="Enter Resource URL"
+                />
+            </div>
+            <div>
+                <label htmlFor="resourceUrl" className="block text-sm font-medium leading-6 text-gray-900">
+                    Resource URL
+                </label>
+                <input
+                    type="text"
+                    id="resourceUrl"
+                    name="url"
+                    value={lectureData.sectionId}
                     onChange={handleResourceChange}
                     className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     placeholder="Enter Resource URL"

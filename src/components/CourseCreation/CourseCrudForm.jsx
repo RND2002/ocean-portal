@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../authservice/AuthProvider";
 import { postCourseApi } from "../../apis/courseApi";
 import Button from '@mui/material/Button';
+import { fetchUserDataApi } from "../../apis/LoginApi";
 
 const CourseCrudForm = () => {
 
@@ -83,6 +84,8 @@ const handleAuthorsChange = (e) => {
         console.error('Error uploading course:', error);
       }
     }
+
+    
   return (
     <div>
      <form method="post" onSubmit={handleCourseSubmit} enctype="multipart/form-data">
