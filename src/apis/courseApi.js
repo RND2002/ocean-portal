@@ -14,8 +14,8 @@ export const postCourseApi = (formData, token) => {
   };
 
 
-  export const createLectureApi=(lecture,token)=>{
-    return apiClient.post('sections/lectures',lecture,{
+  export const createLectureApi=(lecture,sectionId,token)=>{
+    return apiClient.post(`sections/${sectionId}/lectures`,lecture,{
       headers:{
         Authorization: `Bearer ${token}`,
       },

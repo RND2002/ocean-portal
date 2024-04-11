@@ -63,14 +63,16 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../authservice/AuthProvider';
 import { createLectureApi } from '../../apis/courseApi';
+import UnstyledButtonCustom from '../ButtonComponent';
 
 
 const SectionCrud = () => {
     const navigate=useNavigate()
-    const {id}=useParams()
+    const id=useParams().sectionId
+    console.log(id)
     const [lectureData, setLectureData] = useState({
         name: '',
-        sectionId: id,
+        
         resource: {
             name: '',
             size: 0,
@@ -105,7 +107,8 @@ const SectionCrud = () => {
         e.preventDefault();
 
         try {
-            const response = await createLectureApi(lectureData,authContext.token)
+            console.log(lectureData)
+            const response = await createLectureApi(lectureData,id,authContext.token)
                 
           
             
@@ -121,8 +124,8 @@ const SectionCrud = () => {
     
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form onSubmit={handleSubmit} className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
                 <label htmlFor="lectureName" className="block text-sm font-medium leading-6 text-gray-900">
                     Lecture Name
                 </label>
@@ -132,12 +135,13 @@ const SectionCrud = () => {
                     name="name"
                     value={lectureData.name}
                     onChange={handleInputChange}
-                    className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+
                     placeholder="Enter Lecture Name"
                 />
             </div>
 
-            <div>
+            <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
                 <label htmlFor="resourceName" className="block text-sm font-medium leading-6 text-gray-900">
                     Resource Name
                 </label>
@@ -147,12 +151,13 @@ const SectionCrud = () => {
                     name="name"
                     value={lectureData.resource.name}
                     onChange={handleResourceChange}
-                    className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+
                     placeholder="Enter Resource Name"
                 />
             </div>
 
-            <div>
+            <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
                 <label htmlFor="resourceSize" className="block text-sm font-medium leading-6 text-gray-900">
                     Resource Size
                 </label>
@@ -162,12 +167,13 @@ const SectionCrud = () => {
                     name="size"
                     value={lectureData.resource.size}
                     onChange={handleResourceChange}
-                    className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+
                     placeholder="Enter Resource Size"
                 />
             </div>
 
-            <div>
+            <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
                 <label htmlFor="resourceUrl" className="block text-sm font-medium leading-6 text-gray-900">
                     Resource URL
                 </label>
@@ -177,31 +183,42 @@ const SectionCrud = () => {
                     name="url"
                     value={lectureData.resource.url}
                     onChange={handleResourceChange}
-                    className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+
                     placeholder="Enter Resource URL"
                 />
             </div>
-            <div>
+            <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
                 <label htmlFor="resourceUrl" className="block text-sm font-medium leading-6 text-gray-900">
-                    Resource URL
+                   
                 </label>
                 <input
                     type="text"
                     id="resourceUrl"
                     name="url"
+                    hidden
                     value={lectureData.sectionId}
                     onChange={handleResourceChange}
-                    className="block w-full mt-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder="Enter Resource URL"
+                    
+
+                    
                 />
             </div>
 
-            <button
+            {/* <button
                 type="submit"
                 className="inline-flex justify-center px-4 py-2 mt-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
                 Save Lecture
-            </button>
+            </button> */}
+
+           {/* <div className='flex justify-center mt-4'> <UnstyledButtonCustom name="Save Lecture"/></div> */}
+        <div className='sm:mx-auto sm:w-full sm:max-w-sm m-6'>
+        <button class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" type="submit">
+    <div class="absolute inset-0 w-3 bg-blue-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+    <span class="relative text-black group-hover:text-white">Save Lecture</span>
+  </button>
+        </div>
         </form>
     );
 };

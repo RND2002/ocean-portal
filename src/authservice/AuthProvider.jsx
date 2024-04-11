@@ -19,6 +19,7 @@ export default function AuthProvider({children}){
                 setIsAuthenticated(true)
                 setUsername(username)
                 setToken(baToken)
+                setRoles(response.data.roles)
                
                 apiClient.interceptors.request.use(
                     (config)=>{
@@ -43,7 +44,7 @@ export default function AuthProvider({children}){
             setUsername(null)
         }
         return (
-            <AuthContext.Provider value={ {isAuthenticated, login, logout, username, token}  }>
+            <AuthContext.Provider value={ {isAuthenticated, login, logout, username, token,roles}  }>
                 {children}
             </AuthContext.Provider>
         )

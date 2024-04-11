@@ -10,6 +10,7 @@ import { CourseOfAuthor } from '../components/CourseCreation/CourseOfAuthor'
 import SectionsComponent from '../components/CourseCreation/SectionsComponent'
 import SectionList from '../components/CourseCreation/SectionList'
 import Signup from '../components/Signup'
+import AboutUs from '../components/AboutUs'
 
 const Router = () => {
     function AuthenticatedRoute({children}) {
@@ -27,6 +28,7 @@ const Router = () => {
             <NavbarComponent/>
             <Routes>
          <Route path='users/registration' Component={Signup}/>
+         <Route path='about-us' Component={AboutUs}/>
                 
                 <Route path='/' Component={LoginComponent}/>
                
