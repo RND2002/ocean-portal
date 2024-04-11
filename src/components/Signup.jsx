@@ -57,12 +57,13 @@ const Signup = () => {
   navigate('/')
  }
   return (
-    <div className="flex flex-col justify-center align items-center">
+    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <center><h3 className="font-bold text-3xl">Register Yourself</h3></center>
       <div>
         <form method="post" onSubmit={handleUserForm} className="w-full max-w-sm">
-          <div>
-            <br />
-          </div>
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            
+         
           <input
             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
             id="firstName"
@@ -75,9 +76,10 @@ const Signup = () => {
             value={userForm.firstName}
             onChange={handleInputChange}
           />
-          <div>
-            <br />
-          </div>
+           </div>
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+           
+         
           <input
             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
             id="lastName"
@@ -90,9 +92,10 @@ const Signup = () => {
             value={userForm.lastName}
             onChange={handleInputChange}
           />
-          <div>
-            <br />
-          </div>
+           </div>
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            
+         
           <input
             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
             id="email"
@@ -103,9 +106,10 @@ const Signup = () => {
             value={userForm.email}
             onChange={handleInputChange}
           />
-          <div>
-            <br />
-          </div>
+           </div>
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          
+          
           <input
             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
             id="password"
@@ -115,24 +119,25 @@ const Signup = () => {
             value={userForm.password}
             onChange={handleInputChange}
           />
-          <div>
-            <br />
           </div>
           <div>
-            <br />
+            
           </div>
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+           
+          
           <input
             className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
             id="role"
             name="role"
             type="role"
+            hidden
             placeholder="Enter password"
             value={userForm.role}
             onChange={handleInputChange}
           />
-          <div>
-            <br />
           </div>
+          
           {/* <div>
             <span className="flex justify-between">
               Author
@@ -153,14 +158,12 @@ const Signup = () => {
 
             </span>
           </div> */}
-          <div className="flex justify-center align items-center mt-5">
-            <button 
-              className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
+          <div className='sm:mx-auto sm:w-full sm:max-w-sm m-6'>
+        <button class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" type="submit">
+    <div class="absolute inset-0 w-3 bg-blue-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+    <span class="relative text-black group-hover:text-white">Register Yourself</span>
+  </button>
+        </div>
         </form>
       </div>
     </div>

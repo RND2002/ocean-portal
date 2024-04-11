@@ -285,13 +285,13 @@ export default function NavbarComponent() {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     {authenticated === false ? (
-                      <button
+                      <button onClick={handleRegistrationClick}
                         class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow"
                         type="submit"
                       >
                         <div class="absolute inset-0 w-3 bg-pink-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
                         <span class="relative text-black group-hover:text-white">
-                          Sign-in
+                          Sign-up
                         </span>
                       </button>
                     ) : null}

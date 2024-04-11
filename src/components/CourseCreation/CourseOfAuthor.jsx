@@ -234,8 +234,14 @@ export const CourseOfAuthor = () => {
     
     {isLoading && <LinearColor />}
     {!isUserAuthor && 
-        <div>You are not an Author yet. Register yourself as an Author
-            <button className='rounded-lg border-black m-2' onClick={clickedForAuthor}>Register as author</button>
+        <div className='font-semibold text-2xl'>You are not an Author yet. Register yourself as an Author 😊😊
+          <div className='sm:mx-auto sm:w-full sm:max-w-sm m-6'>
+        <button onClick={clickedForAuthor} class="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow" type="submit">
+    <div class="absolute inset-0 w-3 bg-blue-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+    <span class="relative text-black group-hover:text-white">Register As Author</span>
+  </button>
+        </div>
+            {/* <button className='rounded-lg bg-blue border-black m-2' onClick={clickedForAuthor}>Register as author</button> */}
         </div>
     }
     <center><h3 className='text-3xl font-semibold'>Your Curated Courses</h3></center>

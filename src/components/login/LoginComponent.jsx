@@ -3,6 +3,7 @@ import { useAuth } from "../../authservice/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
+import AboutUs from "../AboutUs";
 
 const LoginComponent = () => {
   const [username, setusername] = useState("");
@@ -33,13 +34,16 @@ const LoginComponent = () => {
     navigate(`users/registration`);
   }
   return (
-    <>
+    <div className="flex justify-around">
+    
+      <div><AboutUs/></div>
+     
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       {showErrorMessage && (
-        <div className="errorMessage">
+        <div className="errorMessage text-red-400 font-semibold">
           Authentication Failed. Please check your credentials.
         </div>
       )}
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"
@@ -128,7 +132,7 @@ const LoginComponent = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
